@@ -1,0 +1,41 @@
+<!-- templates/addtask.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить задачу</title>
+</head>
+<body>
+    <h1>Добавить задачу</h1>
+    <form action="/add_task" method="post">
+        <label for="title">Название задачи:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <label for="deadline">Срок:</label>
+        <input type="datetime-local" id="deadline" name="deadline"><br><br>
+
+   <label for="priority">Приоритет:</label>
+<select id="priority" name="priority">
+    <option value="1">Низкий</option>
+    <option value="2">Средний</option>
+    <option value="3">Высокий</option>
+</select><br><br>
+
+
+        <label for="category_id">Категория:</label>
+        <select id="category_id" name="category_id">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="reminder">Напоминание (в минутах до срока):</label>
+        <input type="number" id="reminder" name="reminder" min="0"><br><br>
+
+        <button type="submit">Сохранить задачу</button>
+    </form>
+</body>
+</html>
